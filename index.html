@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Per Te ❤️</title>
+    <meta name="description" content="Una domanda speciale per una persona speciale.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Floating hearts background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- ==================== MAIN QUESTION SCREEN ==================== -->
+    <main class="screen screen--question active" id="questionScreen">
+        <div class="card">
+            <div class="card__emoji">💘</div>
+            <h1 class="card__title">Vuoi essere la mia Valentina??????</h1>
+            <p class="card__subtitle">Prova a cliccare no, se hai il coraggio...</p>
+
+            <div class="card__buttons" id="buttonsContainer">
+                <button class="btn btn--yes" id="btnYes">Sì! ❤️❤️❤️</button>
+                <button class="btn btn--no" id="btnNo">No 😫😖😣</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ==================== SUCCESS / CELEBRATION SCREEN ==================== -->
+    <main class="screen screen--success" id="successScreen">
+        <div class="success-content">
+            <div class="success-heart" id="successHeart">❤️</div>
+            <h1 class="success-title" id="successTitle">Lo sapevo! 🥰🥳</h1>
+            <p class="success-message" id="successMessage">
+                Sara, Ti Amo Tantissimo, da MORIRE! ❤️<br>
+                Sei la cosa più bella che mi sia mai capitata e l'unica cosa che ho sempre desiderato.
+            </p>
+            <button class="btn btn--poem" id="btnPoem">
+                📜 Leggi la Poesia che ho scritto per te...
+            </button>
+        </div>
+    </main>
+
+    <!-- ==================== POEM SCREEN ==================== -->
+    <main class="screen screen--poem" id="poemScreen">
+        <div class="poem-card">
+            <button class="poem-back" id="btnPoemBack">← Torna indietro</button>
+            <h2 class="poem-title">Per Te, Sara ❤️</h2>
+            <div class="poem-content" id="poemContent">
+                <!-- PLACEHOLDER: Inserisci qui la tua poesia -->
+                <p>
+                    Qui andrà la tua poesia...<br><br>
+                    Sostituisci questo testo<br>
+                    con le parole che hai scritto<br>
+                    dal profondo del tuo cuore.<br><br>
+                    ❤️
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

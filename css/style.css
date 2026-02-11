@@ -1,0 +1,443 @@
+/* ============================================
+   SAN VALENTINO — Stylesheet
+   ============================================ */
+
+/* ---------- CSS Custom Properties ---------- */
+:root {
+    --pink-100: #fff0f3;
+    --pink-200: #ffccd5;
+    --pink-300: #ffb3c1;
+    --pink-400: #ff8fa3;
+    --pink-500: #ff758f;
+    --pink-600: #ff4d6d;
+    --rose-700: #c9184a;
+    --rose-800: #a4133c;
+    --rose-900: #800f2f;
+    --rose-950: #590d22;
+
+    --white: #ffffff;
+    --white-alpha-20: rgba(255, 255, 255, 0.20);
+    --white-alpha-40: rgba(255, 255, 255, 0.40);
+    --white-alpha-60: rgba(255, 255, 255, 0.60);
+    --white-alpha-80: rgba(255, 255, 255, 0.80);
+
+    --shadow-soft: 0 8px 32px rgba(128, 15, 47, 0.18);
+    --shadow-glow: 0 0 40px rgba(255, 77, 109, 0.35);
+
+    --font-display: 'Dancing Script', cursive;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-full: 9999px;
+
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-body);
+    min-height: 100dvh;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--rose-900) 0%, var(--rose-800) 25%, var(--pink-600) 50%, var(--pink-400) 75%, var(--pink-200) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+/* ---------- Floating Hearts Background ---------- */
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 1.4rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    will-change: transform, opacity;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.7; }
+    100% {
+        transform: translateY(-10vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* ---------- Screen System ---------- */
+.screen {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding: 24px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================================
+   QUESTION SCREEN
+   ============================================ */
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid var(--white-alpha-20);
+    border-radius: var(--radius-lg);
+    padding: 48px 40px;
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-soft), var(--shadow-glow);
+    animation: cardEntrance 0.8s var(--transition-bounce) forwards;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.card__emoji {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.15); }
+}
+
+.card__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card__subtitle {
+    font-size: clamp(0.9rem, 3vw, 1.05rem);
+    font-weight: 500;
+    color: var(--white-alpha-80);
+    margin-bottom: 36px;
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Buttons ---------- */
+.card__buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 60px;
+    position: relative;
+}
+
+.btn {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 14px 36px;
+    border: none;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    letter-spacing: 0.02em;
+    position: relative;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+.btn--yes {
+    background: linear-gradient(135deg, var(--pink-600) 0%, var(--rose-700) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(255, 77, 109, 0.45);
+}
+
+.btn--yes:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 28px rgba(255, 77, 109, 0.6);
+}
+
+.btn--yes:active {
+    transform: scale(0.97);
+}
+
+.btn--no {
+    background: var(--white-alpha-20);
+    color: var(--white);
+    border: 1px solid var(--white-alpha-40);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all var(--transition-base);
+}
+
+.btn--no:hover {
+    background: var(--white-alpha-40);
+}
+
+/* When the No button is "escaping" on desktop */
+.btn--no.escaping {
+    position: fixed;
+    z-index: 100;
+    transition: top 0.3s var(--transition-bounce), left 0.3s var(--transition-bounce);
+}
+
+/* When the No button transforms to Yes on mobile */
+.btn--no.transformed {
+    background: linear-gradient(135deg, var(--pink-600) 0%, var(--rose-700) 100%);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(255, 77, 109, 0.45);
+    animation: transformPop 0.4s var(--transition-bounce);
+    border: none;
+}
+
+@keyframes transformPop {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.25); }
+    100% { transform: scale(1.05); }
+}
+
+/* ============================================
+   SUCCESS SCREEN
+   ============================================ */
+.success-content {
+    text-align: center;
+    z-index: 10;
+    max-width: 520px;
+    padding: 24px;
+}
+
+.success-heart {
+    font-size: 5rem;
+    animation: heartBeat 1s ease-in-out infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    15%      { transform: scale(1.25); }
+    30%      { transform: scale(1); }
+    45%      { transform: scale(1.15); }
+    60%      { transform: scale(1); }
+}
+
+.success-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+    animation: fadeSlideUp 0.8s 0.3s ease both;
+}
+
+.success-message {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+    line-height: 1.7;
+    color: var(--white-alpha-80);
+    margin-bottom: 40px;
+    animation: fadeSlideUp 0.8s 0.6s ease both;
+}
+
+@keyframes fadeSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn--poem {
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-size: 1rem;
+    padding: 16px 32px;
+    animation: fadeSlideUp 0.8s 1s ease both;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn--poem:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.2);
+}
+
+.btn--poem:active {
+    transform: scale(0.97);
+}
+
+/* ============================================
+   POEM SCREEN
+   ============================================ */
+.poem-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--white-alpha-20);
+    border-radius: var(--radius-lg);
+    padding: 40px 32px;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85dvh;
+    overflow-y: auto;
+    text-align: center;
+    box-shadow: var(--shadow-soft), var(--shadow-glow);
+    animation: cardEntrance 0.6s var(--transition-bounce) forwards;
+
+    /* Custom scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--white-alpha-40) transparent;
+}
+
+.poem-card::-webkit-scrollbar {
+    width: 6px;
+}
+
+.poem-card::-webkit-scrollbar-thumb {
+    background: var(--white-alpha-40);
+    border-radius: 3px;
+}
+
+.poem-back {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    color: var(--white-alpha-60);
+    cursor: pointer;
+    padding: 8px 0;
+    margin-bottom: 16px;
+    transition: color var(--transition-base);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.poem-back:hover {
+    color: var(--white);
+}
+
+.poem-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 28px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.poem-content {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    line-height: 1.9;
+    color: var(--white-alpha-80);
+    font-style: italic;
+}
+
+.poem-content p {
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE
+   ============================================ */
+@media (max-width: 480px) {
+    .card {
+        padding: 36px 24px;
+        border-radius: var(--radius-md);
+    }
+
+    .card__emoji {
+        font-size: 3rem;
+    }
+
+    .card__buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 16px 24px;
+        font-size: 1.05rem;
+    }
+
+    .poem-card {
+        padding: 28px 20px;
+        border-radius: var(--radius-md);
+    }
+
+    .success-heart {
+        font-size: 4rem;
+    }
+}
+
+/* ---------- Safe area for notched iPhones ---------- */
+@supports (padding: env(safe-area-inset-bottom)) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+/* ---------- Reduced motion preference ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
