@@ -36,7 +36,9 @@
 }
 
 /* ---------- Reset & Base ---------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -61,8 +63,15 @@ body {
 }
 
 @keyframes gradientShift {
-    0%, 100% { background-position: 0% 50%; }
-    50%      { background-position: 100% 50%; }
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* ---------- Floating Hearts Background ---------- */
@@ -87,8 +96,15 @@ body {
         transform: translateY(100vh) rotate(0deg) scale(0.5);
         opacity: 0;
     }
-    10% { opacity: 0.7; }
-    90% { opacity: 0.7; }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    90% {
+        opacity: 0.7;
+    }
+
     100% {
         transform: translateY(-10vh) rotate(360deg) scale(1.2);
         opacity: 0;
@@ -138,6 +154,7 @@ body {
         opacity: 0;
         transform: scale(0.8) translateY(30px);
     }
+
     100% {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -151,8 +168,15 @@ body {
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50%      { transform: scale(1.15); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
 }
 
 .card__title {
@@ -243,9 +267,17 @@ body {
 }
 
 @keyframes transformPop {
-    0%   { transform: scale(1); }
-    40%  { transform: scale(1.25); }
-    100% { transform: scale(1.05); }
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1.05);
+    }
 }
 
 /* ============================================
@@ -265,11 +297,27 @@ body {
 }
 
 @keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    15%      { transform: scale(1.25); }
-    30%      { transform: scale(1); }
-    45%      { transform: scale(1.15); }
-    60%      { transform: scale(1); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.25);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.15);
+    }
+
+    60% {
+        transform: scale(1);
+    }
 }
 
 .success-title {
@@ -294,6 +342,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);
@@ -326,13 +375,13 @@ body {
    POEM SCREEN
    ============================================ */
 .poem-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid var(--white-alpha-20);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid var(--white-alpha-40);
     border-radius: var(--radius-lg);
-    padding: 40px 32px;
-    max-width: 560px;
+    padding: 48px 32px;
+    max-width: 600px;
     width: 100%;
     max-height: 85dvh;
     overflow-y: auto;
@@ -342,7 +391,7 @@ body {
 
     /* Custom scrollbar */
     scrollbar-width: thin;
-    scrollbar-color: var(--white-alpha-40) transparent;
+    scrollbar-color: var(--white-alpha-60) transparent;
 }
 
 .poem-card::-webkit-scrollbar {
@@ -350,45 +399,50 @@ body {
 }
 
 .poem-card::-webkit-scrollbar-thumb {
-    background: var(--white-alpha-40);
+    background: var(--white-alpha-60);
     border-radius: 3px;
 }
 
 .poem-back {
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 600;
     background: none;
     border: none;
-    color: var(--white-alpha-60);
+    color: var(--white-alpha-80);
     cursor: pointer;
-    padding: 8px 0;
-    margin-bottom: 16px;
-    transition: color var(--transition-base);
+    padding: 8px 16px;
+    margin-bottom: 24px;
+    transition: all var(--transition-base);
     -webkit-tap-highlight-color: transparent;
+    border-radius: var(--radius-full);
 }
 
 .poem-back:hover {
     color: var(--white);
+    background: var(--white-alpha-20);
 }
 
 .poem-title {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
-    margin-bottom: 28px;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 32px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    color: var(--white);
 }
 
 .poem-content {
-    font-size: clamp(0.95rem, 3vw, 1.1rem);
-    line-height: 1.9;
-    color: var(--white-alpha-80);
-    font-style: italic;
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+    line-height: 1.8;
+    color: var(--white);
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-style: normal;
 }
 
 .poem-content p {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
 }
 
 /* ============================================
@@ -435,7 +489,10 @@ body {
 
 /* ---------- Reduced motion preference ---------- */
 @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
