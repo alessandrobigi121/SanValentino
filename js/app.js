@@ -8,14 +8,21 @@
     // ---- DOM References ----
     const questionScreen = document.getElementById('questionScreen');
     const successScreen = document.getElementById('successScreen');
+    const meaningScreen = document.getElementById('meaningScreen'); // New
     const poemScreen = document.getElementById('poemScreen');
 
     const btnYes = document.getElementById('btnYes');
     const btnNo = document.getElementById('btnNo');
-    const btnPoem = document.getElementById('btnPoem');
+    const btnToMeaning = document.getElementById('btnToMeaning'); // Renamed from btnPoem
+    const btnGoToPoem = document.getElementById('btnGoToPoem'); // New
     const btnPoemBack = document.getElementById('btnPoemBack');
 
     const floatingHeartsContainer = document.getElementById('floatingHearts');
+
+    // Meaning screen elements
+    const meaningTitle = document.getElementById('meaningTitle');
+    const meaningReveal = document.getElementById('meaningReveal');
+    const meaningContent = document.getElementById('meaningContent');
 
     // ---- State ----
     let noAttempts = 0;
@@ -212,15 +219,49 @@
     }
 
     // ============================================
-    // POEM NAVIGATION
+    // NAVIGATION FLOW
     // ============================================
-    btnPoem.addEventListener('click', function () {
-        successScreen.classList.remove('active');
-        setTimeout(() => poemScreen.classList.add('active'), 400);
-    });
 
+    // 1. Success -> Meaning Screen
+    if (btnToMeaning) {
+        btnToMeaning.addEventListener('click', function () {
+            successScreen.classList.remove('active');
+            setTimeout(() => {
+                meaningScreen.classList.add('active');
+            }, 400);
+        });
+    }
+
+    // 2. Meaning Screen Interaction (Reveal)
+    if (meaningContent) {
+        meaningContent.addEventListener('click', function () {
+            // Only trigger if not already active
+            if (!meaningReveal.classList.contains('active')) {
+                meaningTitle.classList.add('fade-out');
+                setTimeout(() => {
+                    meaningReveal.classList.add('active');
+                }, 500);
+            }
+        });
+    }
+
+    // 3. Meaning -> Poem Screen
+    if (btnGoToPoem) {
+        btnGoToPoem.addEventListener('click', function (e) {
+            e.stopPropagation(); // Prevent bubbling to meaningContent
+            meaningScreen.classList.remove('active');
+            setTimeout(() => poemScreen.classList.add('active'), 400);
+        });
+    }
+
+    // 4. Poem -> Back to Success (or Meaning?)
+    // Let's go back to Success as it's the "Main Hub" of celebration
     btnPoemBack.addEventListener('click', function () {
         poemScreen.classList.remove('active');
+        // Reset meaning screen for re-experience?
+        meaningTitle.classList.remove('fade-out');
+        meaningReveal.classList.remove('active');
+
         setTimeout(() => successScreen.classList.add('active'), 400);
     });
 

@@ -446,6 +446,147 @@ body {
 }
 
 /* ============================================
+   MEANING SCREEN
+   ============================================ */
+.meaning-content {
+    text-align: center;
+    z-index: 10;
+    width: 100%;
+    max-width: 440px;
+    /* Fitting iPhone 16 Pro width comfortably */
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.meaning-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 700;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.5s ease;
+}
+
+.meaning-reveal {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    /* Stack on top of title position if needed, or just replace */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-height: 90dvh;
+    overflow-y: auto;
+    padding: 30px 10px;
+    /* Add vertical padding to account for animation movement and shadows */
+    /* Ensure scrollbar doesn't overlap content too much */
+    scrollbar-gutter: stable;
+}
+
+.meaning-reveal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.meaning-image-wrapper {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 24px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border: 4px solid var(--white);
+    transform: rotate(-2deg);
+    animation: floatingImage 6s ease-in-out infinite;
+}
+
+@keyframes floatingImage {
+
+    0%,
+    100% {
+        transform: rotate(-2deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(1deg) translateY(-10px);
+    }
+}
+
+.meaning-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.meaning-text {
+    font-size: clamp(1rem, 4vw, 1.15rem);
+    line-height: 1.6;
+    color: var(--white);
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 32px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.meaning-text p {
+    margin-bottom: 12px;
+}
+
+.meaning-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Buttons for the flow */
+.btn--next-step,
+.btn--poem-enter {
+    background: linear-gradient(135deg, var(--rose-700) 0%, var(--rose-900) 100%);
+    color: var(--white);
+    border: none;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    font-size: 1.1rem;
+    padding: 16px 36px;
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    animation: pulseBtn 2s infinite;
+}
+
+.btn--next-step:hover,
+.btn--poem-enter:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 32px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes pulseBtn {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+}
+
+/* Hide title when reveal is active */
+.meaning-title.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ============================================
    RESPONSIVE - MOBILE
    ============================================ */
 @media (max-width: 480px) {
